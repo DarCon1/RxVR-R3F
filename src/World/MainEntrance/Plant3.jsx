@@ -6,7 +6,7 @@ export default function Plant3() {
     const pottedPlant = useGLTF('/models/house_plants/Rubber fig potted plant.glb');
 
     // Fixed values for the model's properties
-    const scale = [0.3, 0.3, 0.3]; // Example scale value
+    const scale = [0.2, 0.2, 0.2]; // Example scale value
     const position = [22, 0, -15]; // Example position value
     const rotation = [0, 0, 0]; // Example rotation value (in radians)
 

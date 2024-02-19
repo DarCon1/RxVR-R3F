@@ -26,13 +26,18 @@ import Plant3 from './MainEntrance/Plant3'
 import CoffeeTable from './MainEntrance/Coffeetable'
 import CoffeeTable2 from './MainEntrance/CoffeeTable2'
 import Monitor from './MainEntrance/Monitor1'
+import Monitor2 from './MainEntrance/Monitor2'
 import ChairCouchTable1 from './MainEntrance/ChairCouchTable1'
 import ChairCouchTable2 from './MainEntrance/ChairCouchTable2'
+import ChairCouchTable3 from './MainEntrance/ChairCouchTable3'
 import ReceptionDesk from './MainEntrance/ReceptionDesk'
 import ReceptionSign from './MainEntrance/ReceptionSign'
 import Doctor1 from './MainEntrance/Doctor1'
 import Doctor2 from './MainEntrance/Doctor2'
 import Doctor3 from './MainEntrance/Doctor3'
+import Pamphletholders from './MainEntrance/Pamphletholders'
+import WetfloorSign1 from './MainEntrance/WetFloorSign'
+import HandSanitiser1 from './MainEntrance/HandSanitiser'
 
 const Lobby = () => {
   const { lobbyPosition, rotation } = useControls('Lobby', {
@@ -189,17 +194,17 @@ const Lobby = () => {
       </RigidBody>
       {/* Models */}
       <group>
-        <MRI></MRI>
-        {/* <Panda></Panda>
+        {/* <MRI></MRI>
+        <Panda></Panda>
         <Rabbit></Rabbit>
         <RabbitCyan></RabbitCyan>
         <Testrabbit></Testrabbit>
         <RabbitPigtails></RabbitPigtails>
-        <TourGuide></TourGuide> */}
+        <TourGuide></TourGuide>
         <Bed_w_acc></Bed_w_acc>
         <Ultrasound></Ultrasound>
-        {/* <Waiting_chair></Waiting_chair> */}
-        <XRayBoard></XRayBoard>
+        <Waiting_chair></Waiting_chair>
+        <XRayBoard></XRayBoard> */}
         <CouchReception1/>
         <CouchReception2/>
         <CouchReception3/>
@@ -210,13 +215,18 @@ const Lobby = () => {
         <CoffeeTable/>
         <CoffeeTable2/>
         <Monitor/>
+        <Monitor2/>
         <ChairCouchTable1/>
         <ChairCouchTable2/>
+        <ChairCouchTable3/>
         <ReceptionDesk/>
         <ReceptionSign/>
         <Doctor1/>
         <Doctor2/>
         <Doctor3/>
+        <Pamphletholders/>
+        <WetfloorSign1/>
+        <HandSanitiser1/>
       </group>
     </>
   )
