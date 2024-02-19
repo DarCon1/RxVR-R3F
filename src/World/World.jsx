@@ -1,5 +1,5 @@
 import { extend, useFrame, useLoader, useThree } from '@react-three/fiber'
-import { FirstPersonControls, OrbitControls, Sky, SoftShadows, useHelper } from '@react-three/drei'
+import { FirstPersonControls, OrbitControls, Sky, SoftShadows, useHelper, useProgress } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
@@ -13,15 +13,18 @@ import { Buildings } from './Buildings.jsx'
 import Sign2 from './Sign2.jsx'
 import GlassWall from './MainEntrance/GlassWall.jsx'
 import StartVR from './StartVR.jsx'
-import { TeleportationPlane, useController, useXR } from '@react-three/xr'
+import { TeleportationPlane, XR, useController, useXR } from '@react-three/xr'
 import FrontWallUpper from './MainEntrance/FrontWallUpper.jsx'
 import Ecctrl from 'ecctrl'
 import { LargeBuilding } from './Large-building.jsx'
 import LectureTheatre from './LectureTheatre.jsx'
 import Lobby from './Lobby.jsx'
 import MainConcourse from './MainConcourse.jsx'
-import { SlidingDoor } from './Sliding-door.jsx'
-import Ladybird from './Ladybird.jsx'
+import Seahorse from './Seahorse.jsx'
+import XRayRoom from './XRayRoom.jsx'
+import MRIRoom from './MRIRoom.jsx'
+import RabbitCyan from './MainEntrance/RabbitCyan.jsx'
+import Overlay from '../Overlay.jsx'
 
 export default function World() {
   // const {gl} = useThree()
@@ -37,12 +40,6 @@ export default function World() {
   //     })
 
   // }
-
-  // Set the initial position of the camera
-  const { camera } = useThree()
-  useEffect(() => {
-    camera.position.set(0, 1.8, -3)
-  }, [])
 
   const { cameraTarget, orbitControlsEnabled } = useControls({
     cameraTarget: {
@@ -93,13 +90,20 @@ export default function World() {
     referenceSpace,
   } = useXR()
 
-  // console.log(controllers)
-  // console.log(isPresenting)
-  // console.log(isHandTracking)
-  // console.log(player)
-  // console.log(session)
-  // console.log(foveation)
-  // console.log(referenceSpace)
+  useEffect(() => {
+    if (!isPresenting) {
+      player.position.set(0, 1.6, 0)
+    } else {
+      player.position.set(0, 0, 0)
+    }
+  }, [isPresenting])
+
+  useFrame((state, delta, XRFrame) => {
+    // if (XRFrame) {
+    //   console.log(`Player position: ${player.position.x}, ${player.position.y}, ${player.position.z}`)
+    //   console.log(`Player camera position: ${player.children[0].position.x}, ${player.children[0].position.y}, ${player.children[0].position.z}`)
+    // }
+  })
 
   return (
     <>
@@ -112,17 +116,16 @@ export default function World() {
       <Buildings></Buildings>
       <Physics>
         {orbitControlsEnabled ? null : <Player></Player>}
-        {/* <MainEntrance></MainEntrance>   */}
         <GlobalGround></GlobalGround>
         <LargeBuilding></LargeBuilding>
-        {/* <Ecctrl></Ecctrl> */}
         <Sign2></Sign2>
         <Lobby></Lobby>
-        {/* <GlassWall></GlassWall> */}
-        {/* <FrontWallUpper></FrontWallUpper> */}
         <LectureTheatre></LectureTheatre>
         <MainConcourse></MainConcourse>
-        <Ladybird></Ladybird>
+        <Seahorse></Seahorse>
+        <XRayRoom></XRayRoom>
+        <MRIRoom></MRIRoom>
+        <RabbitCyan></RabbitCyan>
       </Physics>
 
       {isPresenting && (
@@ -130,6 +133,7 @@ export default function World() {
           <TeleportationPlane rightHand />
         </>
       )}
+      {/* <Overlay></Overlay> */}
     </>
   )
 }
